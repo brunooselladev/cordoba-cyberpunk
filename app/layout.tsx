@@ -1,36 +1,22 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { Chakra_Petch } from 'next/font/google'
 import './globals.css'
 
+const chakraPetch = Chakra_Petch({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-chakra',
+})
+
 export const metadata: Metadata = {
-  title: 'NetRunner // Mapa de Córdoba Capital',
-  description: 'Mapa interactivo Cyberpunk de Córdoba Capital para campaña de rol.',
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
+  title: 'Córdoba Cyberpunk // Campaña XD',
+  description: 'Hub de mapas para la campaña de rol Córdoba Cyberpunk.',
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#05070a',
 }
 
 export default function RootLayout({
@@ -39,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="bg-[#05070a]">
+    <html lang="es" className={`${chakraPetch.variable} bg-[#05070a]`}>
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
